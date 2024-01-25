@@ -2,11 +2,16 @@ const express = require('express');
 const app = express();
 const port = process.env.port || 5500;
 
+let path = require('path');
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
+let myTypeServer = "The Eradictor";
 
 app.get('/', function(req,res){
-    res.render('views/index');
+    res.render('index', {
+        
+    });
 });
 
 app.get('/', function(req,res){
