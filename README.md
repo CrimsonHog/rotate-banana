@@ -1,2 +1,1 @@
-# solid-fishstick-snowcats
-Dr. Cumbie (yet again) re-staring a class repo for CIS 486 Spring '24 
+November Lab (CIS 486) - Ethan Rinke
