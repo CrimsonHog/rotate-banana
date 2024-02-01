@@ -8,7 +8,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // use res.render to load up an ejs view file
 
-let myTypeServer = "I dont know my enneagram";
+let myTypeServer = "Type 5 -- Investigator";
 
 app.get('/', function(req, res) {
 
@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
 
 app.get('/send', function (req, res) {
   
-    res.send('Hello World from Express <br><a href="">home</a>')
+    res.send('Hello World from Express <br><a href="/">home</a>')
 })
 
 // app.listen(3000)
