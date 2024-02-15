@@ -31,13 +31,13 @@ async function run() {
     const db = client.db("papaLab");
     const coll = db.collection("papaCollection");
 
-    const docs = [
-      {name: "Ethan Rinke", schoolClass: "Student", studentYear: "Senior", gradMonth: "May"},
-      {name: "Dallas Hine", schoolClass: "Grad", studentYear: "Grad", gradMonth: "May"}
-    ];
-    const result = await coll.insertMany(docs);
+    // const docs = [
+    //   {name: "Ethan Rinke", schoolClass: "Student", studentYear: "Senior", gradMonth: "May"},
+    //   {name: "Dallas Hine", schoolClass: "Grad", studentYear: "Grad", gradMonth: "May"}
+    // ];
+    const result = await coll.findOne({name:"Ethan Rinke"});
     // display the results of your operation
-    console.log(result.insertedIds);
+    console.log(result);
 
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
@@ -63,11 +63,14 @@ app.get('/send', function(req, res){
 // use res.render to load up an ejs view file
 
 let myTypeServer = "Type 5 -- Investigator";
+let myResult = result;
+
 
 app.get('/', function(req, res) {
 
   res.render('index', {
    
+
     myTypeClient: myTypeServer 
 
   });
