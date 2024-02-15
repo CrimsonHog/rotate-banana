@@ -27,7 +27,19 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
+    const db = client.db("papaLab");
+    const coll = db.collection("papaCollection");
+
+    const docs = [
+      {name: "Ethan Rinke", schoolClass: "Student", studentYear: "Senior", gradMonth: "May"},
+      {name: "Dallas Hine", schoolClass: "Grad", studentYear: "Grad", gradMonth: "May"}
+    ];
+    const result = await coll.insertMany(docs);
+    // display the results of your operation
+    console.log(result.insertedIds);
+
+
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
@@ -36,6 +48,16 @@ async function run() {
 }
 run().catch(console.dir);
 
+
+
+
+app.get('/', function(req, res){
+
+});
+
+app.get('/send', function(req, res){
+
+});
 
 
 // use res.render to load up an ejs view file
@@ -63,5 +85,5 @@ app.get('/send', function (req, res) {
 // app.listen(3000)
 
 app.listen(port, () => {
-  console.log(`nov app listening on port ${port}`)
+  console.log(`papa app listening on port ${port}`)
 })
