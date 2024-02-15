@@ -14,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(process.env.uri, {
+const client = new MongoClient(process.env.URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
