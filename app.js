@@ -30,8 +30,7 @@ async function run() {
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     // const docs = [
-    //   {name: "Ethan Rinke", schoolClass: "Student", studentYear: "Senior", gradMonth: "May"},
-    //   {name: "Dallas Hine", schoolClass: "Grad", studentYear: "Grad", gradMonth: "May"}
+    //   {name: "Ethan Rinke", schoolClass: "Student", studentYear: "Senior", gradMonth: "May"};
     // ];
     
     const result = await client.db("papaLab").collection("papaCollection").find().toArray();
