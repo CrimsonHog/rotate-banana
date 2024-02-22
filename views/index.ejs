@@ -7,6 +7,15 @@
 <li> I am <%= myTypeClient %>, critical thinker, usually quiet</p>
 
 
+
+<% for (var i = 0; i< myResultClient.length; i++) { %>
+    <li>Student:              <%= myResultClient[i].name %></li>
+    <li>School Registration:  <%= myResultClient[i].schoolClass %></li>
+    <li>Graduation Month:     <%= myResultClient[i].gradMonth %></li>
+
+
+<% } %>
+
 <footer> Links to Repo:
 
     <a href="https://crimsonhog.github.io/bug-free-fortnight/" target="_blank">HTML Website</a> |
