@@ -59,14 +59,14 @@ run().catch(console.dir);
 //     res.render('report', {'report': name});
 //   });
 // });
-var myResultClient;
+
 app.get('/report', async (req, res) => {
   let myResultServer = await run();
   console.log("myResultServer:", myResultServer[0]);
 
   res.render('index', {
     myTypeClient: myTypeServer,
-    myResultClient: myResultServer
+    'myResultClient': myResultServer
   });
 
 });
