@@ -60,7 +60,7 @@ run().catch(console.dir);
 //     res.render('report', {'report': name});
 //   });
 // });
-
+let myResultClient;
 app.get('/report', async (req, res) => {
   let myResultServer = await run();
   console.log("myResultServer:", myResultServer[0]);
