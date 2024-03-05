@@ -1,1 +1,1 @@
-November Lab (CIS 486) - Ethan Rinke
+Quebec Lab (CIS 486) - Ethan Rinke
