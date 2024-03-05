@@ -47,47 +47,90 @@ async function run() {
   }
 };
 run().catch(console.dir);
-
-// Not working, try to fix for the next lab
-
-// app.get('/report', (req, res) => {
-//   const db = client.db("papaLab");
-//   const coll = db.collection("papaCollection");
-
-//   coll.find({}).toArray(function(err, name){
-//     assert.equal(err, null);
-//     res.render('report', {'report': name});
-//   });
-// });
-
+//Read
 app.get('/', async (req, res) => {
-  let myResultServer = await run();
-  console.log("myResultServer:", myResultServer[0]);
+  let result = await run().catch(console.error); ; 
+
+  console.log("run() Result: ", result);
 
   res.render('index', {
-    myTypeClient: myTypeServer,
-    'myResultClient': myResultServer
+   
+    pageTitle: "Students", 
+    studentData: result
+
   });
 
 });
 
-// use res.render to load up an ejs view file
-let myTypeServer = "Type 5 -- Investigator";
-
-app.get('/', function(req, res) {
-
-  res.render('index', {
-    myTypeClient: myTypeServer
-  });
+// Create
+app.get('/addGame', async (req, res)=> {
   
+  try {
+    // console.log("req.body: ", req.body) 
+    client.connect; 
+    const collection = client.db("papaLab").collection("vidGames");
+    
+    //draws from body parser 
+    console.log(req.body);
+    
+    await collection.insertOne(req.body);
+    res.redirect('/');
+  }
+  catch(err){
+    console.log(err)
+  }
+  finally{
+   // client.close()
+  }
 });
 
-app.get('/send', function (req, res) {
-  
-    res.send('Hello World from Express <br><a href="/">home</a>')
-})
 
-// app.listen(3000)
+//Update
+app.get('/updateGame', async (req, res) =>  {
+  try {
+    console.log("req.parms.id: ", req.params.id) 
+    
+    client.connect; 
+    const collection = client.db("papaLab").collection("vidGames");
+    let result = await collection.findOneAndUpdate( 
+      {"_id": ObjectId(req.params.id)}, { $set: {"rYear": "2024" } }
+    )
+    .then(result => {
+      console.log(result); 
+      res.redirect('/');
+    })
+    .catch(error => console.error(error))
+  }
+  finally{
+    //client.close()
+  }  
+});
+
+//Delete
+app.post('/deleteGame/:id', async (req, res) => {
+
+  try {
+    console.log("req.parms.id: ", req.params.id) 
+    
+    client.connect; 
+    const collection = client.db("papaLab").collection("vidGames");
+    let result = await collection.findOneAndDelete( 
+      {
+        "_id": ObjectId(req.params.id)
+      }
+    )
+    .then(result => {
+      console.log(result); 
+      res.redirect('/');
+    })
+    .catch(error => console.error(error))
+  }
+  finally{
+    //client.close()
+  }
+
+});
+
 
 app.listen(port, () => {
   console.log(`papa app listening on port ${port}`)
